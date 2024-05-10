@@ -57,6 +57,8 @@ https://hvsonmez.medium.com/rxjs-objervable-subject-behaviorsubject-replaysubjec
 
 https://rxjs.dev/guide/subject
 
+https://bilisim.io/2019/11/02/rxjse-yakindan-bakis-2-subjects/
+
 */
 
 
