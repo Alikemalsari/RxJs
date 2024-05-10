@@ -45,6 +45,8 @@ subject.next(354645);
 subject.subscribe(data=>console.log(`ObserverC ${data}`))
 subject.next("subject datası gönderiyorum");
 subject.next(56);
+// Fatihin sorusu, subscribe olunca geçmişteki n tane veriyi de alabileyim.
+// umut Abinin sorusu,  bu verilere bir operatör uygula
 
 
   }
