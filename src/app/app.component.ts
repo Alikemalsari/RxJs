@@ -48,6 +48,17 @@ subject.next(56);
 // Fatihin sorusu, subscribe olunca geçmişteki n tane veriyi de alabileyim.
 // umut Abinin sorusu,  bu verilere bir operatör uygula
 
+/* Subject konusu hak.
+https://www.bayramucuncu.com/rxjs-subjects/#:~:text=RxJS'de%20Subjects%20g%C3%B6zlemlenebilir%20nesnenin,tek%20bir%20konu%C5%9Fmac%C4%B1%20olarak%20d%C3%BC%C5%9F%C3%BCnebilirsiniz.
+
+https://thrkardak.medium.com/rxjs-yak%C4%B1ndan-bak%C4%B1%C5%9F-2-subjects-ce93b4715ff3
+
+https://hvsonmez.medium.com/rxjs-objervable-subject-behaviorsubject-replaysubject-e17bd07a0ee
+
+https://rxjs.dev/guide/subject
+
+*/
+
 
   }
 
