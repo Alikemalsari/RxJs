@@ -1,5 +1,5 @@
-import { Component,OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs'
+import { Component } from '@angular/core';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, of, skipLast } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -27,13 +27,6 @@ export class AppComponent {
  observable.subscribe(data=>console.log(data));
 // subscribe ile observer (burada data degiskeni ile tanimladik) yani tüketici tanımlayarak nesnelerimiz akisa verilir
 
-/*
-const observer =function(data:any){
-  console.log(data)
-}
-
-observable.subscribe(observer)
-*/
 
 console.log("************************  SUBJECT KONUSUNA GEÇİYORUZ   **************************")
 
@@ -45,8 +38,50 @@ subject.next(354645);
 subject.subscribe(data=>console.log(`ObserverC ${data}`))
 subject.next("subject datası gönderiyorum");
 subject.next(56);
-// Fatihin sorusu, subscribe olunca geçmişteki n tane veriyi de alabileyim.
+
 // umut Abinin sorusu,  bu verilere bir operatör uygula
+
+
+console.log("// Fatihin sorusu, subscribe olunca geçmişteki n tane veriyi de alabileyim.");
+
+console.log("*****************************************************************")
+
+console.log("Behavior Subject (Bir önceki data'dan yakalaarak devam eden)")
+
+let data:any="Test Datasi"
+const behaviorsubject=new BehaviorSubject(data);
+behaviorsubject.subscribe(data=>console.log(`ObserverA ${data}`))
+behaviorsubject.subscribe(data=>console.log(`ObserverB ${data}`))
+// A ve B aboneleri akışa sonradan dahil olmalarına ragmen bir onceki "test datasi"'ni de alarak devam etti
+behaviorsubject.next(5);
+behaviorsubject.next("bir string");
+behaviorsubject.next(589879);
+behaviorsubject.subscribe(data=>console.log(`ObserverC ${data}`))
+behaviorsubject.next(0);
+
+console.log("*******************************************************")
+console.log("Replay Subject (İstenildigi kadar onceki veri alinabilir)")
+
+
+const replaysubject=new ReplaySubject(2);
+// abone oldutan önceki 2 veriyi de al dedik
+replaysubject.next(1);
+replaysubject.subscribe(data=>console.log(`ObserverA ${data}`));
+replaysubject.next(2);
+replaysubject.next("deneme yazisi");
+replaysubject.subscribe(data=>console.log(`ObserverB ${data}`));
+replaysubject.next("ikinci String");
+replaysubject.next(5345435);
+
+
+
+
+console.log("OF  OPERATÖRÜ")
+const numbers = of(1, 2, 3, 4, 5);
+const skipLastTwo = numbers.pipe(skipLast(2));
+skipLastTwo.subscribe(x => console.log(x));
+
+
 
 /* Subject konusu hak.
 https://www.bayramucuncu.com/rxjs-subjects/#:~:text=RxJS'de%20Subjects%20g%C3%B6zlemlenebilir%20nesnenin,tek%20bir%20konu%C5%9Fmac%C4%B1%20olarak%20d%C3%BC%C5%9F%C3%BCnebilirsiniz.
