@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject, of, skipLast } from 'rxjs'
+import { BehaviorSubject, Observable, ReplaySubject, Subject, filter, map, of, skipLast } from 'rxjs'
 
 @Component({
   selector: 'app-root',
@@ -78,8 +78,9 @@ replaysubject.next(5345435);
 
 console.log("OF  OPERATÖRÜ")
 const numbers = of(1, 2, 3, 4, 5);
-const skipLastTwo = numbers.pipe(skipLast(2));
-skipLastTwo.subscribe(x => console.log(x));
+// Of operatoru, verilen herhangi bir turden degeri observable nesnesine donusturur. 
+numbers.pipe(filter(x=>x%3==0), map(x=> "degeri"),skipLast(2)).subscribe(data=>console.log(data));
+// pipe, birden fazla operatoru bir akis üzerinden kontrol etmemizi saglar
 
 
 
